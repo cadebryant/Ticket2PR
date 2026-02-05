@@ -50,7 +50,7 @@ public class TicketsController : ControllerBase
                 _gitService.CommitChanges(tempPath, $"Implement: {request.TicketDescription}");
 
                 // 5. Push branch to GitHub
-                var githubToken = _githubService.GetGitHubToken();
+                var githubToken = _githubService.GetGitHubTokenInternal();
                 _gitService.PushBranch(tempPath, branchName, githubToken);
 
                 // 6. Create pull request
@@ -91,7 +91,7 @@ public class TicketsController : ControllerBase
                 BranchName = string.Empty,
                 PullRequestUrl = string.Empty,
                 Status = "Error",
-                Message = ex.Message
+                Message = "An error occurred while processing the ticket. Please check the logs for details."
             });
         }
     }

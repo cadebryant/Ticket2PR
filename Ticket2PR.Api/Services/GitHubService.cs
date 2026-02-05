@@ -24,8 +24,12 @@ public class GitHubService
             Credentials = new Credentials(_githubToken)
         };
 
+        var title = ticketDescription.Length <= 50 
+            ? $"Implement: {ticketDescription}" 
+            : $"Implement: {ticketDescription[..50]}...";
+
         var pullRequest = new NewPullRequest(
-            $"Implement: {ticketDescription.Substring(0, Math.Min(50, ticketDescription.Length))}",
+            title,
             branchName,
             "main")
         {
@@ -59,7 +63,7 @@ public class GitHubService
         return (parts[0], parts[1]);
     }
 
-    public string GetGitHubToken()
+    internal string GetGitHubTokenInternal()
     {
         return _githubToken;
     }

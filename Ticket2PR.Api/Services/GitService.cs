@@ -81,6 +81,11 @@ public class GitService
         _logger.LogInformation("Branch pushed successfully");
     }
 
+    internal string GetTokenForPush(string token)
+    {
+        return token;
+    }
+
     private string GenerateBranchName(string ticketDescription)
     {
         // Create a short, unique branch name
@@ -97,14 +102,14 @@ public class GitService
         
         // Add timestamp to make it unique (5 chars for last 5 digits of timestamp)
         var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-        var shortTimestamp = timestamp.Substring(timestamp.Length - 5);
+        var shortTimestamp = timestamp[^5..];
         
         var branchName = $"{sanitized}-{shortTimestamp}";
         
         // Ensure it's max 15 characters
         if (branchName.Length > 15)
         {
-            branchName = branchName.Substring(0, 15);
+            branchName = branchName[..15];
         }
         
         return branchName;
