@@ -65,7 +65,7 @@ dotnet build
 dotnet run
 ```
 
-The API will be available at `http://localhost:5000` (or the port specified in launchSettings.json).
+The API will be available at `http://localhost:5100` (or the port specified in launchSettings.json).
 
 ## API Usage
 
@@ -109,7 +109,7 @@ Error (500 Internal Server Error):
 ### Using cURL
 
 ```bash
-curl -X POST http://localhost:5000/api/tickets \
+curl -X POST http://localhost:5100/api/tickets \
   -H "Content-Type: application/json" \
   -d '{
     "gitHubUrl": "https://github.com/owner/repository",
@@ -125,13 +125,13 @@ $body = @{
     ticketDescription = "Implement user authentication feature"
 } | ConvertTo-Json
 
-Invoke-RestMethod -Uri "http://localhost:5000/api/tickets" -Method Post -Body $body -ContentType "application/json"
+Invoke-RestMethod -Uri "http://localhost:5100/api/tickets" -Method Post -Body $body -ContentType "application/json"
 ```
 
 ## Swagger Documentation
 
 When running in development mode, Swagger UI is available at:
-- `http://localhost:5000/swagger`
+- `http://localhost:5100/swagger`
 
 ## Workflow
 
